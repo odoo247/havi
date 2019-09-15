@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="custom_project_portal_template" name="My Tasks Custom" inherit_id="project.portal_my_tasks">
+        <xpath expr="//em[hasclass('font-weight-normal')]" position="after">
+            <th class="text-center">Tags</th>
+            <th class="text-center">Planned Hours</th>
+            <th class="text-center">Hours Spent</th>
+        </xpath>
+
+        <xpath expr="//tbody/t/tr/td[@class='text-center']" position="before">
+            <td class="text-center">
+                <t t-foreach="task.tag_ids" t-as="tag_id">
+                    <span class="badge badge-pill badge-info" t-esc="tag_id.name"/>
+                </t>
+            </td>
+            <td class="text-center">
+                <span t-esc="task.planned_hours"/>
+            </td>
+            <td class="text-center">
+                <span t-esc="task.effective_hours"/>
+            </td>
+        </xpath>
+    </template>
+    <template id="custom_portal_my_projects" name="My Projects Custom" inherit_id="project.portal_my_projects">
+        <xpath expr="//t/t[4]/tbody/tr/td[1]" position="after">
+            <td>
+                <span>Total: </span><t t-esc="project.hour_support" t-options='{"widget":"float_time"}'/>
+            </td>
+            <td>
+                <span>Remaining: </span><t t-esc="project.remaining_hour" t-options='{"widget":"float_time"}'/>
+            </td>
+        </xpath>
+    </template>
+</odoo>

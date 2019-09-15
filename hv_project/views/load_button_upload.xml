@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="button_uploadbe" name="Button Uploadbe" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/hv_project/static/src/js/button_upload.js"></script>
+        </xpath>
+    </template>
+
+    <template id="button_uploadfe" name="Button Uploadfe" inherit_id="web.assets_frontend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/hv_project/static/src/js/button_upload.js"></script>
+            <link rel="stylesheet" type="text/css" href="/hv_project/static/src/css/vstyle.css"/>
+        </xpath>
+    </template>
+</odoo>
