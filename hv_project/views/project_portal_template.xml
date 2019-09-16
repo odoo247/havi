@@ -22,12 +22,20 @@
         </xpath>
     </template>
     <template id="custom_portal_my_projects" name="My Projects Custom" inherit_id="project.portal_my_projects">
+        <xpath expr="//t/t[4]/tbody" position="before">
+            <tr>
+                <th>Name</th>
+                <th>Total Hours</th>
+                <th>Remaining Hours</th>
+                <th class="text-right">Task Count</th>
+            </tr>
+        </xpath>
         <xpath expr="//t/t[4]/tbody/tr/td[1]" position="after">
             <td>
-                <span>Total: </span><t t-esc="project.hour_support" t-options='{"widget":"float_time"}'/>
+                <t t-esc="project.hour_support" t-options='{"widget":"float_time"}'/>
             </td>
             <td>
-                <span>Remaining: </span><t t-esc="project.remaining_hour" t-options='{"widget":"float_time"}'/>
+                <t t-esc="project.remaining_hour" t-options='{"widget":"float_time"}'/>
             </td>
         </xpath>
     </template>
