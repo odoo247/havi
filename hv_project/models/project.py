@@ -27,14 +27,6 @@ class TaskExtend(models.Model):
 
     remain_hour_support=fields.Float("Remain Hours Support",compute='_computer_hour_support',readonly=True)
 
-    def act_send_email(self):
-        template_id=self.env.ref('hv_project.email_template_project_task').id
-        template=self.env['mail.template'].browse(template_id)
-        follower=self.env['project.project'].search([('name','=',self.project_id.name)]).message_follower_ids
-        for i in follower:
-            template.write({'email_to':i.partner_id.email})
-            template.send_mail(self.id,force_send=True)
-
     def _computer_hour_support(self):
         total_hours_project=self.project_id.hour_support
         total_tasks=self.env['project.task'].search([('project_id','=',self.project_id.name)])
