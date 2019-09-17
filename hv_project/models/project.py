@@ -26,6 +26,15 @@ class TaskExtend(models.Model):
     _inherit="project.task"
 
     remain_hour_support=fields.Float("Remain Hours Support",compute='_computer_hour_support',readonly=True)
+
+    def act_send_email(self):
+        template_id=self.env.ref('hv_project.email_template_project_task').id
+        template=self.env['mail.template'].browse(template_id)
+        follower=self.env['project.project'].search([('name','=',self.project_id.name)]).message_follower_ids
+        for i in follower:
+            template.write({'email_to':i.partner_id.email})
+            template.send_mail(self.id,force_send=True)
+
     def _computer_hour_support(self):
         total_hours_project=self.project_id.hour_support
         total_tasks=self.env['project.task'].search([('project_id','=',self.project_id.name)])
@@ -39,27 +48,22 @@ class TaskExtend(models.Model):
             if total_hours_project != 0:
                 if not state:
                     if (total_hours_project/self.project_id.hour_support)*100 < self.project_id.percent:
-                        for i in self.project_id.message_follower_ids:
-                            mail_obj=self.env['mail.mail']
-                            print("send")
-                            mail=mail_obj.create({
-                                'body_html':"The remaining time is very low",
-                                'email_to':i.partner_id.email,
-                                'subject':'Remind'
-                            })
-                            mail.send()
-                        this_project.write({'first_reminder': True})
+                        template_id = self.env.ref('hv_project.email_template_project_task_remind_first').id
+                        template = self.env['mail.template'].browse(template_id)
+                        follower = self.env['project.project'].search([('name', '=', self.project_id.name)]).message_follower_ids
+                        for i in follower:
+                            template.write({'email_to': i.partner_id.email})
+                            template.send_mail(self.id, force_send=True)
+                    this_project.write({'first_reminder': True})
             second_reminder=self.env['project.project'].search([('name','=',self.project_id.name)])
             if not second_reminder.second_reminder:
                 if total_hours_project <= 0:
-                    for i in self.project_id.message_follower_ids:
-                        mail_obj = self.env['mail.mail']
-                        mail=mail_obj.create({
-                            'body_html':"The time is over",
-                            'email_to': i.partner_id.email,
-                            'subject':"Notice",
-                        })
-                        mail.send()
+                    template_id = self.env.ref('hv_project.email_template_project_task_remind_second').id
+                    template = self.env['mail.template'].browse(template_id)
+                    follower = self.env['project.project'].search([('name', '=', self.project_id.name)]).message_follower_ids
+                    for i in follower:
+                        template.write({'email_to': i.partner_id.email})
+                        template.send_mail(self.id, force_send=True)
                     second_reminder.write({'second_reminder':True})
         self.remain_hour_support=total_hours_project
         this_project.write({'remaining_hour':total_hours_project})

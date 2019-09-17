@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="email_template_project_task_remind_first" model="mail.template">
+            <field name="name">Projects: Send by email</field>
+            <field name="model_id" ref="hv_project.model_project_task"/>
+            <field name="email_from">${object.user_id.email_formatted |safe}</field>
+            <field name="email_to"></field>
+            <field name="subject">Reminder</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    %for i in object.project_id.message_follower_ids:
+                    %if object.env['mail.template'].search([('email_to','=',i.partner_id.email)])
+                    <p>Dear ${i.partner_id.name},<br/>
+                        ${break}
+                    %endif
+                    %endfor
+                    Remaining time of ${object.project_id.name} is very low</p>
+                </div>
+            </field>
+        </record>
+    <record id="email_template_project_task_remind_second" model="mail.template">
+            <field name="name">Projects: Send by email</field>
+            <field name="model_id" ref="hv_project.model_project_task"/>
+            <field name="email_from">${object.user_id.email_formatted |safe}</field>
+            <field name="email_to"></field>
+            <field name="subject">Notice</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    %for i in object.project_id.message_follower_ids:
+                    %if object.env['mail.template'].search([('email_to','=',i.partner_id.email)])
+                    <p>Dear ${i.partner_id.name},<br/>
+                        ${break}
+                    %endif
+                    %endfor
+                    Time of ${object.project_id.name} is over</p>
+                </div>
+            </field>
+        </record>
+</odoo>

@@ -11,6 +11,7 @@
         'views/project_portal_template.xml',
         'views/load_button_upload.xml',
         'views/project_view.xml',
+        'data/mail_data.xml',
     ],
 
     'qweb':[
