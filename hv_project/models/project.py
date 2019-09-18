@@ -65,12 +65,12 @@ class TaskExtend(models.Model):
             if total_hours_project != 0:
                 if not state:
                     if (total_hours_project/self.project_id.hour_support)*100 < self.project_id.percent:
-                        self.env['project.project'].search([('name','=',self.project_id.name)]).send_email()
+                        self.project_id.send_email()
                         this_project.write({'first_reminder': True})
             second_reminder=self.env['project.project'].search([('name','=',self.project_id.name)])
             if not second_reminder.second_reminder:
                 if total_hours_project <= 0:
-                    self.env['project.project'].search([('name','=',self.project_id.name)]).send_email_second()
+                    self.project_id.send_email_second()
                     second_reminder.write({'second_reminder':True})
         self.remain_hour_support=total_hours_project
         this_project.write({'remaining_hour':total_hours_project})
