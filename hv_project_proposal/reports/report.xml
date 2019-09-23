@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+        <report id="action_create_proposal_report"
+                string="Create Proposal"
+                model="project.proposal"
+                report_type="qweb-pdf"
+                name="hv_project_proposal.report_proposal_template"
+                file="hv_project_proposal.report_proposal_template"/>
+</odoo>

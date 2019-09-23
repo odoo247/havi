@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_form_create_proposal" model="ir.ui.view">
+        <field name="name">Create Proposal</field>
+        <field name="model">project.proposal</field>
+        <field name="arch" type="xml">
+            <form string="Create Proposal">
+                <group>
+                    <field name="project_title"/>
+                    <field name="customer"/>
+                    <field name="date"/>
+                </group>
+                <group>
+                    <field name="objective"/>
+                    <field name="suggest_solution"/>
+                    <field name="approach"/>
+                    <field name="timeline"/>
+                </group>
+                <footer>
+                    <button class="oe_highlight" name="print_report" type="object" string="Print"/>
+                    <button string="Cancel" type="object" class="oe_link" special="cancel"></button>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

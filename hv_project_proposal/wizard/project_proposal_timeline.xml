@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_form_project_proposal_timeline" model="ir.ui.view">
+        <field name="name">Timeline</field>
+        <field name="model">project.proposal.timeline</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="task"/>
+                    <field name="duration"/>
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="view_tree_project_proposal_timeline" model="ir.ui.view">
+        <field name="name">Timeline</field>
+        <field name="model">project.proposal.timeline</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="task"/>
+                <field name="duration"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

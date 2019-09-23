@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <act_window id="action_create_proposal"
+                name="Create Proposal"
+                res_model="project.proposal"
+                target="new"
+                view_type="form"
+                view_mode="form"
+                view_id="view_form_create_proposal"/>
+    <menuitem name="Create Proposal"
+              id="menu_create_proposal"
+              parent="project.menu_main_pm"
+              sequence="100"
+              action="action_create_proposal"/>
+</odoo>

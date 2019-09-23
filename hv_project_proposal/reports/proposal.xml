@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_proposal_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="row">
+                        <div class="col-1">
+                        </div>
+                        <div class="col-3">
+                                <t t-if="doc.date">
+                                    <span t-esc="doc.date.strftime('%d %B %Y')" style="font-size:10pt"/>
+                                </t>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div class="row">
+                        <div class="col-3">
+                        </div>
+                        <div class="col-6">
+                            <t t-if="doc.project_title">
+                                <h2 style="font-size:30pt"><b t-esc="doc.project_title.name"/></h2>
+                            </t>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-4" style="font-size:10pt;">
+                            <span>Prepared for</span>
+                            <br/>
+                            <b t-esc="doc.customer.display_name"/>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-4" style="font-size:10pt;">
+                            <span>Prepared by</span>
+                            <br/>
+                            <b t-esc="user_id.name"/>
+                        </div>
+                    </div>
+                    <br/><br/>
+                    <br/><br/>
+                    <br/><br/>
+                    <br/><br/>
+                    <br/>
+                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                    <div class="row">
+                        <div class="col-4">
+                        </div>
+                        <div class="col-4">
+                            <h4 style="font-size:14pt;"><b>1. Task Outline</b></h4>
+                        </div>
+                    </div>
+                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                    <div class="row">
+                        <div class="col-2" style="font-size:16pt"></div>
+                        <h4><b>1.1. Objectives</b></h4>
+                    </div>
+                        <div class="row" style="font-size:16pt">
+                            <div class="col-2"></div>
+                            <t t-if="doc.objective">
+                                <t class="col-6" t-raw="doc.objective"/>
+                            </t>
+                        </div>
+                    <div class="row" style="font-size:16pt">
+                        <div class="col-2"></div>
+                        <h4><b>1.2. Suggest solution</b></h4>
+                    </div>
+                    <div class="row" style="font-size:16pt">
+                        <div class="col-2"></div>
+                        <t t-if="doc.suggest_solution">
+                            <t class="col-6" t-raw="doc.suggest_solution"/>
+                        </t>
+                    </div>
+                    <br/><br/><br/>
+                    <div class="row">
+                        <div class="col-4">
+                        </div>
+                        <div>
+                            <h4 style="font-size:14pt"><b>2.Task Approach and Timeline</b></h4>
+                        </div>
+                    </div>
+                    <br/><br/>
+                    <div class="row" style="font-size:16pt">
+                        <div class="col-2"></div>
+                        <h4><b>2.1. Approach</b></h4>
+                    </div>
+                    <div class="row" style="font-size:16pt">
+                        <div class="col-2">
+                        </div>
+                        <t t-if="doc.approach">
+                            <t class="col-6" t-raw="doc.approach"/>
+                        </t>
+                    </div>
+                    <div class="row" style="font-size:16pt">
+                        <div class="col-2"></div>
+                        <h4 style="font-size:16pt"><b>2.2. Timeline</b></h4>
+                    </div>
+                    <div class="row" style="font-size:16pt">
+                        <table style="border:1px solid black;border-collapse:collapse;text-align:center;width:100%">
+                            <th style="border:1px solid black;">
+                                ID
+                            </th>
+                            <th style="border:1px solid black;">
+                                Tasks
+                            </th>
+                            <th style="border:1px solid black;">
+                                Duration
+                            </th>
+                            <tbody style="border:1px solid black;">
+                                <t t-set="i" t-value="1"/>
+                                <t t-foreach="doc.timeline" t-as="t">
+                                    <tr style="border:1px solid black;">
+                                        <td style="border:1px solid black;width:20%;"><t t-esc="i"/></td>
+                                        <td style="border:1px solid black;width:50%"><t t-esc="t.task"/></td>
+                                        <td style="border:1px solid black;width:30%;"><t t-esc="t.duration"/></td>
+                                    </tr>
+                                    <t t-set="i" t-value="i+1"/>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+                </div>
+            </t>
+        </t>
+    </template>
+    <template id="report_proposal_template_cards" inherit_id="web.external_layout_standard">
+            <xpath expr="//div[1]" position="replace">
+                <div class="header" style="height:500px;width:1000px;">
+                    <img src="/hv_project_proposal/static/images/image1.png" style="width:1000px;height:185px"/>
+                </div>
+            </xpath>
+        <xpath expr="//div[3]" position="replace">
+            <div class="footer o_standard_footer">
+                <img src="/hv_project_proposal/static/images/image2.jpg"/>
+            </div>
+        </xpath>
+    </template>
+</odoo>
