@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+                <record id="paperformat_proposal" model="report.paperformat">
+                    <field name="name">Proposal</field>
+                    <field name="default" eval="True"/>
+                    <field name="format">A4</field>
+                    <field name="page_height">0</field>
+                    <field name="page_width">0</field>
+                    <field name="orientation">Portrait</field>
+                    <field name="margin_top">60</field>
+                    <field name="margin_bottom">30</field>
+                    <field name="margin_left">10</field>
+                    <field name="margin_right">5</field>
+                    <field name="header_line" eval="False"/>
+                    <field name="header_spacing">67</field>
+                    <field name="dpi">90</field>
+                </record>
         <report id="action_create_proposal_report"
                 string="Create Proposal"
                 model="project.proposal"
                 report_type="qweb-pdf"
                 name="hv_project_proposal.report_proposal_template"
-                file="hv_project_proposal.report_proposal_template"/>
+                file="hv_project_proposal.report_proposal_template"
+                paperformat="hv_project_proposal.paperformat_proposal"/>
 </odoo>

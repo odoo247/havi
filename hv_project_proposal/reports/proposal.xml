@@ -4,6 +4,11 @@
         <t t-call="web.html_container">
             <t t-call="web.external_layout">
                 <div class="page">
+                    <style>
+            ol{
+            margin-left:12mm;
+            }
+        </style>
                 <t t-foreach="docs" t-as="doc">
                     <div class="row">
                         <div class="col-1">
@@ -49,7 +54,7 @@
                     <br/><br/>
                     <br/><br/>
                     <br/><br/>
-                    <br/>
+                    <br/><br/><br/><br/><br/>
                     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                     <div class="row">
                         <div class="col-4">
@@ -58,7 +63,7 @@
                             <h4 style="font-size:14pt;"><b>1. Task Outline</b></h4>
                         </div>
                     </div>
-                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                    <br/><br/><br/>
                     <div class="row">
                         <div class="col-2" style="font-size:16pt"></div>
                         <h4><b>1.1. Objectives</b></h4>
@@ -93,8 +98,7 @@
                         <h4><b>2.1. Approach</b></h4>
                     </div>
                     <div class="row" style="font-size:16pt">
-                        <div class="col-2">
-                        </div>
+                        <div class="col-2"></div>
                         <t t-if="doc.approach">
                             <t class="col-6" t-raw="doc.approach"/>
                         </t>
@@ -104,7 +108,8 @@
                         <h4 style="font-size:16pt"><b>2.2. Timeline</b></h4>
                     </div>
                     <div class="row" style="font-size:16pt">
-                        <table style="border:1px solid black;border-collapse:collapse;text-align:center;width:100%">
+                        <div class="col-2"></div>
+                        <table style="border:1px solid black;border-collapse:collapse;text-align:left;width:80%">
                             <th style="border:1px solid black;">
                                 ID
                             </th>
@@ -112,15 +117,15 @@
                                 Tasks
                             </th>
                             <th style="border:1px solid black;">
-                                Duration
+                                Duration(days)
                             </th>
                             <tbody style="border:1px solid black;">
                                 <t t-set="i" t-value="1"/>
                                 <t t-foreach="doc.timeline" t-as="t">
                                     <tr style="border:1px solid black;">
-                                        <td style="border:1px solid black;width:20%;"><t t-esc="i"/></td>
-                                        <td style="border:1px solid black;width:50%"><t t-esc="t.task"/></td>
-                                        <td style="border:1px solid black;width:30%;"><t t-esc="t.duration"/></td>
+                                        <td style="border:1px solid black;width:10%;"><t t-esc="i"/></td>
+                                        <td style="border:1px solid black;width:40%"><t t-esc="t.task"/></td>
+                                        <td style="border:1px solid black;width:10%;"><t t-esc="t.duration"/></td>
                                     </tr>
                                     <t t-set="i" t-value="i+1"/>
                                 </t>
@@ -134,8 +139,8 @@
     </template>
     <template id="report_proposal_template_cards" inherit_id="web.external_layout_standard">
             <xpath expr="//div[1]" position="replace">
-                <div class="header" style="height:500px;width:1000px;">
-                    <img src="/hv_project_proposal/static/images/image1.png" style="width:1000px;height:185px"/>
+                <div class="header">
+                    <img src="/hv_project_proposal/static/images/image1.png" width="100%"/>
                 </div>
             </xpath>
         <xpath expr="//div[3]" position="replace">

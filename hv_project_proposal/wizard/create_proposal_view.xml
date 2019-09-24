@@ -14,7 +14,11 @@
                     <field name="objective"/>
                     <field name="suggest_solution"/>
                     <field name="approach"/>
-                    <field name="timeline"/>
+                    <field name="timeline">
+<!--                        <tree editable="bottom" string="time line">-->
+<!--                            -->
+<!--                        </tree>-->
+                    </field>
                 </group>
                 <footer>
                     <button class="oe_highlight" name="print_report" type="object" string="Print"/>

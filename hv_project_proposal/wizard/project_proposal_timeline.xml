@@ -16,7 +16,7 @@
         <field name="name">Timeline</field>
         <field name="model">project.proposal.timeline</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree editable="bottom">
                 <field name="task"/>
                 <field name="duration"/>
             </tree>

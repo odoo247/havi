@@ -12,5 +12,4 @@ class ProjectProposal(models.TransientModel):
     timeline=fields.One2many('project.proposal.timeline','timeline_id',string="Timeline")
 
     def print_report(self):
-        #print("AAAAAAAAAAAa" + self.check)
         return self.env.ref('hv_project_proposal.action_create_proposal_report').report_action(self)
